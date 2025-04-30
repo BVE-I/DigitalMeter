@@ -173,8 +173,12 @@
     <ClInclude Include="atsplugin.h" />
     <ClInclude Include="PanelMeter.h" />
     <ClInclude Include="PressureMeter.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SpeedMeter.h" />
     <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DigitalMeter.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
