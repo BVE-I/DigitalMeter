@@ -1,5 +1,5 @@
 ﻿//
-// Generated on 2025/04/30 by inimoni 
+// Generated on 2025/07/06 by inimoni 
 //
 
 /*
@@ -170,6 +170,19 @@ public:
         int      Interval;
     } SAPPressureMeter;
 
+    // CurrentMeter
+    struct _CurrentMeter
+    {
+        string_t Type;
+        int      MeterIndex;
+        int      SignIndex;
+        int      HundredsPlaceIndex;
+        int      TenthPlaceIndex;
+        int      OnesPlaceIndex;
+        double   Increment;
+        int      Interval;
+    } CurrentMeter;
+
     // FirstPanelMeter
     struct _FirstPanelMeter
     {
@@ -251,6 +264,16 @@ protected:
         inimoni::inirw( r,f,s, _T("Increment        "), SAPPressureMeter.Increment );
         inimoni::inirw( r,f,s, _T("Interval         "), SAPPressureMeter.Interval );
 
+        s = _T("CurrentMeter");
+        inimoni::inirw( r,f,s, _T("Type             "), CurrentMeter.Type  );
+        inimoni::inirw( r,f,s, _T("MeterIndex       "), CurrentMeter.MeterIndex );
+        inimoni::inirw( r,f,s, _T("SignIndex        "), CurrentMeter.SignIndex );
+        inimoni::inirw( r,f,s, _T("HundredsPlaceIndex"), CurrentMeter.HundredsPlaceIndex );
+        inimoni::inirw( r,f,s, _T("TenthPlaceIndex  "), CurrentMeter.TenthPlaceIndex );
+        inimoni::inirw( r,f,s, _T("OnesPlaceIndex   "), CurrentMeter.OnesPlaceIndex );
+        inimoni::inirw( r,f,s, _T("Increment        "), CurrentMeter.Increment );
+        inimoni::inirw( r,f,s, _T("Interval         "), CurrentMeter.Interval );
+
         s = _T("FirstPanelMeter");
         inimoni::inirw( r,f,s, _T("InputIndex       "), FirstPanelMeter.InputIndex );
         inimoni::inirw( r,f,s, _T("OutputIndex      "), FirstPanelMeter.OutputIndex );
@@ -309,6 +332,14 @@ protected:
         SAPPressureMeter.OnesPlaceIndex = 999;
         SAPPressureMeter.Increment   = 1.0;
         SAPPressureMeter.Interval    = 200;
+        CurrentMeter.Type            = _T("am");
+        CurrentMeter.MeterIndex      = 999;
+        CurrentMeter.SignIndex       = 999;
+        CurrentMeter.HundredsPlaceIndex = 999;
+        CurrentMeter.TenthPlaceIndex = 999;
+        CurrentMeter.OnesPlaceIndex  = 999;
+        CurrentMeter.Increment       = 1.0;
+        CurrentMeter.Interval        = 200;
         FirstPanelMeter.InputIndex   = 999;
         FirstPanelMeter.OutputIndex  = 999;
         FirstPanelMeter.HundredsPlaceIndex = 999;
@@ -374,19 +405,20 @@ namespace inimoni
         return true;                                                         
     }                                                                        
                                                                              
-    static bool read(string_t ifn, string_t sec, string_t key, double& dst)
-    {
-        string_t s;
-        inimoni::read(ifn, sec, key, s);
-
-        TCHAR* e;
-        double x = _tcstod(s.c_str(), &e);
-
-        if (!*e && s != "") {
-            dst = x;
-        }
-        return true;
-    }
+    bool read(string_t ifn, string_t sec, string_t key, double& dst)         
+    {                                                                        
+        string_t s;                                                          
+        inimoni::read(ifn, sec, key, s);                                     
+                                                                             
+        TCHAR* e;                                                            
+        double x = _tcstod(s.c_str(), &e);                                   
+                                                                             
+        dst = 0.0;                                                           
+        if (!*e) {                                                           
+            dst = x;                                                         
+        }                                                                    
+        return true;                                                         
+    }                                                                        
                                                                              
     template<class T>                                                        
     bool write(string_t ifn, string_t sec, string_t key, T val_t)            

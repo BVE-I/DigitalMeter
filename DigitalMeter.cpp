@@ -7,6 +7,7 @@
 #include "DigitalMeterIni.h"
 #include "SpeedMeter.h"
 #include "PressureMeter.h"
+#include "CurrentMeter.h"
 #include "PanelMeter.h"
 #include "DigitalMeter.h"
 #include <stdio.h>
@@ -112,6 +113,13 @@ ATS_API ATS_HANDLES WINAPI Elapse(ATS_VEHICLESTATE vehicleState, int* panel, int
 	if (0 <= g_ini.SAPPressureMeter.HundredsPlaceIndex && g_ini.SAPPressureMeter.HundredsPlaceIndex <= 255)panel[g_ini.SAPPressureMeter.HundredsPlaceIndex] = g_SAPPressureMeter.ToReturnHundredsPlace;
 	if (0 <= g_ini.SAPPressureMeter.TenthPlaceIndex && g_ini.SAPPressureMeter.TenthPlaceIndex <= 255)panel[g_ini.SAPPressureMeter.TenthPlaceIndex] = g_SAPPressureMeter.ToReturnTenthPlace;
 	if (0 <= g_ini.SAPPressureMeter.OnesPlaceIndex && g_ini.SAPPressureMeter.OnesPlaceIndex <= 255)panel[g_ini.SAPPressureMeter.OnesPlaceIndex] = g_SAPPressureMeter.ToReturnOnesPlace;
+	// 電流計関連
+	g_CurrentMeter.main(vehicleState.Time, vehicleState.Current, g_ini.CurrentMeter.Increment, g_ini.CurrentMeter.Interval, g_ini.CurrentMeter.Type);
+	if (0 <= g_ini.CurrentMeter.SignIndex && g_ini.CurrentMeter.SignIndex <= 255)panel[g_ini.CurrentMeter.SignIndex] = g_CurrentMeter.ToReturnSign;
+	if (0 <= g_ini.CurrentMeter.MeterIndex && g_ini.CurrentMeter.MeterIndex <= 255)panel[g_ini.CurrentMeter.MeterIndex] = g_CurrentMeter.ToReturnMeter;
+	if (0 <= g_ini.CurrentMeter.HundredsPlaceIndex && g_ini.CurrentMeter.HundredsPlaceIndex <= 255)panel[g_ini.CurrentMeter.HundredsPlaceIndex] = g_CurrentMeter.ToReturnHundredsPlace;
+	if (0 <= g_ini.CurrentMeter.TenthPlaceIndex && g_ini.CurrentMeter.TenthPlaceIndex <= 255)panel[g_ini.CurrentMeter.TenthPlaceIndex] = g_CurrentMeter.ToReturnTenthPlace;
+	if (0 <= g_ini.CurrentMeter.OnesPlaceIndex && g_ini.CurrentMeter.OnesPlaceIndex <= 255)panel[g_ini.CurrentMeter.OnesPlaceIndex] = g_CurrentMeter.ToReturnOnesPlace;
 	// パネル出力
 	g_FirstPanelMeter.main(vehicleState.Time, panel[g_ini.FirstPanelMeter.InputIndex], g_ini.FirstPanelMeter.Increment, g_ini.FirstPanelMeter.Interval);
 	if (0 <= g_ini.FirstPanelMeter.OutputIndex && g_ini.FirstPanelMeter.OutputIndex <= 255)	panel[g_ini.FirstPanelMeter.OutputIndex] = g_FirstPanelMeter.ToReturnMeter;

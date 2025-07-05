@@ -167,6 +167,7 @@
     <None Include="Ats.def" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CurrentMeter.h" />
     <ClInclude Include="DigitalMeterIni.h" />
     <ClInclude Include="doorCloseingSecurity.h" />
     <ClInclude Include="DigitalMeter.h" />

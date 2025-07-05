@@ -17,7 +17,7 @@ public:
 		std::mt19937 engine(seed());
 		double mu, sig;
 		if (Increment < 1)mu = 0.0, sig = 0.12;
-		else mu = 0.0, sig = 0.25;
+		else mu = 0.0, sig = 0.2;
 		std::normal_distribution<> dist(mu, sig);
 		double rand = dist(engine);
 		double k = -exp(-fabs(Speed) / 25) + 1;

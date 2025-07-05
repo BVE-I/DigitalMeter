@@ -20,4 +20,5 @@ doorCloseingSecurity g_doorCloseingSecurity; // 戸閉保安
 DigitalMeterIni g_ini; // iniファイル対応
 SpeedMeter g_SpeedMeter; // 速度表示
 PressureMeter g_BCPressureMeter, g_MRPressureMeter, g_ERPressureMeter, g_BPPressureMeter, g_SAPPressureMeter; // 圧力表示
+CurrentMeter g_CurrentMeter; // 電流表示
 PanelMeter g_FirstPanelMeter, g_SecondPanelMeter; // パネル出力
