@@ -16,9 +16,9 @@ public:
 		if (Update && !(UpdateOld))SaveCurrent = (Type == "amabs") ? fabs(Current) : Current;
 		ToReturnSign = (SaveCurrent == 0) ? 0 : (SaveCurrent < 0) ? 2 : 1;
 		ToReturnMeter = (Increment > 1) ? (int(SaveCurrent / Increment)) * Increment : (int(SaveCurrent / Increment));
-		ToReturnHundredsPlace = (SaveCurrent < 100) ? 10 : (int)SaveCurrent / 100;
-		ToReturnTenthPlace = (SaveCurrent < 10) ? 10 : (int)(SaveCurrent / 10) % 10;
-		ToReturnOnesPlace = (int)SaveCurrent % 10;
+		ToReturnHundredsPlace = (fabs(SaveCurrent) < 100) ? 10 : (int)fabs(SaveCurrent) / 100;
+		ToReturnTenthPlace = (fabs(SaveCurrent) < 10) ? 10 : (int)(fabs(SaveCurrent) / 10) % 10;
+		ToReturnOnesPlace = (int)fabs(SaveCurrent) % 10;
 		UpdateOld = Update;
 	}
 };
